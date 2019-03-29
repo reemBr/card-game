@@ -1,43 +1,45 @@
-// declear variables 
 
 let opendCards = [];
 let numOfmoves = 0;
 let numOfSuccess = 0;
 const numOfPairs = 8;
-let seconds = 0, minutes = 0,hours = 0;
+let newGame = true;
+let seconds = 0; minutes = 0;hours = 0;
 let counter = document.querySelector(".moves");
 
 let stars = document.querySelectorAll(".stars li");
-let restart = document.getElementById("restart")
+let restart = document.getElementById("restart");
 let timer = document.querySelector(".timer");
 let deck = document.querySelector(".deck");
-let card = document.querySelectorAll('.card');
-let cards = [...card]
+let card = document.querySelectorAll(".card");
+let modal = document.getElementById("myModal");
+let starsModal = document.querySelectorAll(".stars-modal li");
+let timerModal = document.querySelector(".timer-modal");
+let restartModal = document.getElementById("restart-modal");
+let cards = [...card];
 
 
-//rearrange table 
-rearrange()
+// rearrange table 
+rearrange();
 // on click on cards udate score and cards
-Array.from(cards).forEach(check);
+cards.forEach(check);
 function check(element) {
-    element.addEventListener('click', updateScore);
-    element.addEventListener('click', compare);
+    element.addEventListener("click", updateScore);
+    element.addEventListener("click", compare);
 }
 // on click restart, reset everything 
-restart.addEventListener('click', reset);
-
+restart.addEventListener("click", reset);
+restartModal.addEventListener("click", reset);
 
 function updateScore() {
-    //1. update number of moves
-    numOfmoves++;
-    if (numOfmoves == 1) {
+    //1. start timer
+    if (newGame) {
         seconds = 0;
         minutes = 0;
         hours = 0;
-        //2. start timer
+        newGame = false;
         startTimer();
     }
-    counter.innerHTML = numOfmoves;
 
 
     //3. update number of stars
@@ -59,20 +61,20 @@ function updateScore() {
 
 function reset() {
     //rearrange cards
-    rearrange()
+    modal.style.display = "none";
+    rearrange();
     opendCards = [];
     numOfmoves = 0;
     numOfSuccess = 0;
+    newGame = true;
     for (i = 0; i < 3; i++) {
         stars[i].style.visibility = "visible";
     }
     //update number of moves
     counter.innerHTML = numOfmoves;
-    //hide congrats message
-    document.getElementById("won").style.visibility = "hidden";
     //stop and clear time
-    stopTime()
-    cleartTime()
+    stopTime();
+    cleartTime();
 
 }
 // rearrange function to rearrange cards
@@ -92,7 +94,6 @@ function compare(event) {
     if (event.target.classList.contains("open") || event.target.classList.contains("match")) {
         return
     }
-
     //2. make it visibale
     event.target.classList.add("open", "show")
     //3. compare it to prev opend card
@@ -103,14 +104,18 @@ function compare(event) {
             numOfSuccess++;
             //check for success so we stop if true
             if (numOfSuccess == numOfPairs) {
-                document.getElementById("won").style.visibility = "visible";
                 stopTime();
+                modal.style.display = "block";
+                success();
             }
         } else {
-            // don't hide the second card  immediately 
+            //increase num of moves as this move was wrong
+            numOfmoves++;
+            counter.innerHTML = numOfmoves;
+            // don"t hide the second card  immediately 
             setTimeout(function() {
                 event.target.classList.remove("open", "show");
-            }, 500);
+            }, 350);
             opendCards[0].classList.remove("open", "show");
         }
         opendCards = [];
@@ -118,6 +123,24 @@ function compare(event) {
         opendCards.push(event.target);
     }
 
+}
+function success(){
+    if (numOfmoves > 16 && numOfmoves < 32) {
+        for (i = 0; i < 3; i++) {
+            if (i > 1) {
+                starsModal[i].style.visibility = "hidden";
+            }
+        }
+    }
+    if (numOfmoves > 32 && numOfmoves < 48) {
+        for (i = 0; i < 3; i++) {
+            if (i > 0) {
+                starsModal[i].style.visibility = "hidden";
+            }
+        }
+    }
+    timerModal.innerHTML = timer.innerHTML;
+    cleartTime() ;
 }
 // calculating  timer is used with the help from the source https://jsfiddle.net/Daniel_Hug/pvk6p/
 function startTimer() {
