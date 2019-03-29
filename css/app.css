@@ -66,7 +66,7 @@ h1 {
 }
 .timer {
     display:inline-block; 
-    margin-left: 40px; 
+    margin-left: 70px; 
 }
 .deck .card.open {
     transform: rotateY(0);
@@ -105,17 +105,45 @@ h1 {
     list-style: none;
     display: inline-block;
 }
-
-.score-panel .restart {
+ .stars-modal li {
+    text-align: center;
+    list-style: none;
+    padding-right: 50px;
+    display: inline-block;
+}
+.score-panel .restart  {
     float: right;
     cursor: pointer;
 }
 
-.alert {
+  
+.modal {
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 10;
+    top: 10;
+    width: 50%; /* Full width */
+    height: 50%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
     padding: 20px;
-    margin: 25px;
-    background-color: #02ccba;
-    color: white;
-    visibility: hidden;
+    border: 1px solid #888;
+    width: 80%;
+        text-align: center;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
   }
   

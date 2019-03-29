@@ -3,14 +3,12 @@
 ## Table of Contents
 
 * [Instructions](#instructions)
-* [Contributing](#contributing)
 
 ## Instructions
+The software is for a memory card game, you need to select and match the same card!
+A counter will count your failed attempts. If your number of moves is less than 16 you will get 3 stars, but if your number of moves is more than 16 and less than 32 you will get two stars. Otherwise you will get 1 star. Good luck.
 
-To get started, open `js/app.js` and start building out the app's functionality
+open the game from the `index.html` file and start playing!
 
-For specific, detailed inforamtion, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
 
 

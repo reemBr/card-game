@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Matching Game</title>
     <meta name="description" content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
@@ -30,10 +31,25 @@
             </div>
 
         </section>
-        <div class="alert" id="won">
-            <strong>Congrats!</strong> You have won! Press reset if you want to play again
-          </div>
-    
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <p>Congrats You have won</p>
+          <ul class="stars-modal">
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+        </ul>
+        <time class="timer-modal">00:00:00</time> 
+        <div class="restart" id="restart-modal">
+            <i class="fa fa-repeat"></i>
+        </div>
+
+        </div>
+      
+      </div>
         <ul class="deck">
             <li class="card" type="diamond">
                 <i class="fa fa-diamond"></i>
@@ -61,7 +77,7 @@
             </li>
             <li class="card"  type="diamond">
                 <i class="fa fa-diamond"></i>
-            </li>x
+            </li>
             <li class="card"  type="bomb">
                 <i class="fa fa-bomb"></i>
             </li>
@@ -85,6 +101,7 @@
             </li>
         </ul>
     </div>
+    
 
     <script src="js/app.js"></script>
 </body>
